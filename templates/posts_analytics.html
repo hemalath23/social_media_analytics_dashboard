@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Social Media Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Analytics Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#followers">Followers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#posts">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#engagement">Engagement</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#reports">Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#settings">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Posts Analytics Section -->
+        <div id="posts" class="mb-5">
+            <h2>Posts Analytics</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Posts</h5>
+                            <p class="card-text">1,200</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Likes per Post</h5>
+                            <p class="card-text">20</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Comments per Post</h5>
+                            <p class="card-text">5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <canvas id="postsChart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Platform</th>
+                                    <th scope="col">Post Content</th>
+                                    <th scope="col">Likes</th>
+                                    <th scope="col">Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-01-01</td>
+                                    <td>Twitter</td>
+                                    <td>Exciting new product launch!</td>
+                                    <td>100</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-01-02</td>
+                                    <td>Facebook</td>
+                                    <td>Join our live event.</td>
+                                    <td>150</td>
+                                    <td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-01-03</td>
+                                    <td>Instagram</td>
+                                    <td>Behind the scenes at our office.</td>
+                                    <td>200</td>
+                                    <td>40</td>
+                                </tr>
+                                <!-- More rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">© 2024 Your Company</span>
+            <ul class="list-inline mt-2">
+                <li class="list-inline-item">
+                    <a href="#" class="text-muted">Privacy Policy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="text-muted">Terms of Use</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="text-muted">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        var ctx = document.getElementById('postsChart').getContext('2d');
+        var postsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Posts',
+                    data: [120, 140, 160, 180, 200, 220, 240],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Likes',
+                    data: [2400, 2600, 2800, 3000, 3200, 3400, 3600],
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Comments',
+                    data: [600, 700, 800, 900, 1000, 1100, 1200],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Posts and Engagement Over Time'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Count'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Show Details</h1>
+        
+        <!-- Account Details -->
+        {% if account %}
+        <div class="card">
+            <div class="card-header">
+                Account Details
+            </div>
+            <div class="card-body">
+                <p><strong>Username:</strong> {{ account.username }}</p>
+                <p><strong>Followers Count:</strong> {{ account.followers_count }}</p>
+                <p><strong>Following Count:</strong> {{ account.following_count }}</p>
+                <!-- Add more account details as needed -->
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Post Details -->
+        {% if post %}
+        <div class="card mt-3">
+            <div class="card-header">
+                Post Details
+            </div>
+            <div class="card-body">
+                <p><strong>Post ID:</strong> {{ post.post_id }}</p>
+                <p><strong>Content:</strong> {{ post.content }}</p>
+                <p><strong>Likes:</strong> {{ post.likes }}</p>
+                <p><strong>Comments:</strong> {{ post.comments }}</p>
+                <p><strong>Shares:</strong> {{ post.shares }}</p>
+                <!-- Add more post details as needed -->
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Analytics Details -->
+        {% if analytics %}
+        <div class="card mt-3">
+            <div class="card-header">
+                Analytics Details
+            </div>
+            <div class="card-body">
+                <p><strong>Account Username:</strong> {{ analytics.account.username }}</p>
+                <p><strong>Date:</strong> {{ analytics.date }}</p>
+                <p><strong>Followers:</strong> {{ analytics.followers }}</p>
+                <p><strong>Posts:</strong> {{ analytics.posts }}</p>
+                <p><strong>Engagement Rate:</strong> {{ analytics.engagement_rate }}</p>
+                <!-- Add more analytics details as needed -->
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
