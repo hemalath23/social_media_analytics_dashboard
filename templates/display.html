@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>All Information</h1>
+        
+        <!-- Account Details -->
+        {% if accounts %}
+        <div class="card mb-4">
+            <div class="card-header">
+                Account Details
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Platform</th>
+                            <th>Followers Count</th>
+                            <th>Following Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for account in accounts %}
+                        <tr>
+                            <td>{{ account.username }}</td>
+                            <td>{{ account.platform.name }}</td>
+                            <td>{{ account.followers_count }}</td>
+                            <td>{{ account.following_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Post Details -->
+        {% if posts %}
+        <div class="card mb-4">
+            <div class="card-header">
+                Post Details
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Post ID</th>
+                            <th>Account</th>
+                            <th>Content</th>
+                            <th>Created At</th>
+                            <th>Likes</th>
+                            <th>Comments</th>
+                            <th>Shares</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td>{{ post.post_id }}</td>
+                            <td>{{ post.account.username }}</td>
+                            <td>{{ post.content }}</td>
+                            <td>{{ post.created_at }}</td>
+                            <td>{{ post.likes }}</td>
+                            <td>{{ post.comments }}</td>
+                            <td>{{ post.shares }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Analytics Details -->
+        {% if analytics %}
+        <div class="card mb-4">
+            <div class="card-header">
+                Analytics Details
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Account</th>
+                            <th>Date</th>
+                            <th>Followers</th>
+                            <th>Posts</th>
+                            <th>Engagement Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for analytic in analytics %}
+                        <tr>
+                            <td>{{ analytic.account.username }}</td>
+                            <td>{{ analytic.date }}</td>
+                            <td>{{ analytic.followers }}</td>
+                            <td>{{ analytic.posts }}</td>
+                            <td>{{ analytic.engagement_rate }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
